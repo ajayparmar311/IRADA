@@ -1,6 +1,6 @@
-# The Sanjivani NGO - ReactJS & SpringBoot Project
+# The IRADA NGO - ReactJS & SpringBoot Project
 
-This project is a web application for The Sanjivani NGO. It's built using **ReactJS**, **Axios**, and **Bootstrap**.
+This project is a web application for The IRADA NGO. It's built using **ReactJS**, **Axios**, and **Bootstrap**.
 
 ## Features
 
@@ -15,18 +15,18 @@ This project is a web application for The Sanjivani NGO. It's built using **Reac
 - **ReactJS**: A JavaScript library for building user interfaces.
 - **Axios**: A promise-based HTTP client for the browser and node.js.
 - **Bootstrap**: The world's most popular front-end open-source toolkit.
-- **SrpingBoot**: Backend repo: `https://github.com/bhaveshpatil07/The-Sanjivani-NGO-Server`.
+- **SrpingBoot**: Backend repo: `https://github.com/bhaveshpatil07/The-IRADA-NGO-Server`.
 
 ## Getting Started
 
 Clone the repository:
 ```bash
-git clone https://github.com/bhaveshpatil07/The-Sanjivani-NGO-ReactJs
+git clone https://github.com/bhaveshpatil07/The-IRADA-NGO-ReactJs
 ```
 ##### Move to the desired folder:
 
 ```bash
-cd sanjivani
+cd IRADA
 ```
 
 ##### Install the dependencies:
