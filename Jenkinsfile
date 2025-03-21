@@ -14,7 +14,7 @@ pipeline {
         stage('Build ReactJS Image') {
             steps {
                 script {
-                    sh "eval $(minikube docker-env)" // Use Minikube's Docker
+                    sh 'eval $(minikube docker-env)' // Use Minikube's Docker
                     sh "docker build -t $REGISTRY/$REACT_IMAGE:latest -f Dockerfile ."
                     sh "docker push $REGISTRY/$REACT_IMAGE:latest"
                 }
