@@ -3,6 +3,7 @@ pipeline {
     environment {
         REGISTRY = "localhost:5000"  // Minikube registry
         REACT_IMAGE = "irada-react"
+        DOCKER_HOST = "unix:///var/run/docker.sock"
     }
     stages {
         stage('Checkout Code') {
@@ -14,7 +15,6 @@ pipeline {
         stage('Build ReactJS Image') {
             steps {
                 script {
-                    sh 'eval $(minikube docker-env)' // Use Minikube's Docker
                     sh "docker build -t $REGISTRY/$REACT_IMAGE:latest -f Dockerfile ."
                     sh "docker push $REGISTRY/$REACT_IMAGE:latest"
                 }
