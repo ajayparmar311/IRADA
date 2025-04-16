@@ -1,0 +1,6 @@
+projectKey=irada
+serverUrl=http://localhost:9000
+serverVersion=25.3.0.104237
+dashboardUrl=http://localhost:9000/dashboard?id=irada
+ceTaskId=a6f097c6-fe2d-4db8-93e0-433335f6cf33
+ceTaskUrl=http://localhost:9000/api/ce/task?id=a6f097c6-fe2d-4db8-93e0-433335f6cf33

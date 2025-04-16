@@ -1,0 +1,48 @@
+FROM jenkins/inbound-agent:latest
+
+USER root
+
+# Install basic tools
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    unzip \
+    git \
+    gnupg \
+    build-essential \
+    software-properties-common
+
+# Install Node.js (LTS v23)
+RUN curl -fsSL https://deb.nodesource.com/setup_23.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm@latest
+
+# Install SonarScanner
+ENV SONAR_SCANNER_VERSION=5.0.1.3006
+ENV SONAR_SCANNER_HOME=/opt/sonar-scanner
+RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_SCANNER_VERSION}-linux.zip && \
+    unzip sonar-scanner-cli-${SONAR_SCANNER_VERSION}-linux.zip && \
+    mv sonar-scanner-${SONAR_SCANNER_VERSION}-linux $SONAR_SCANNER_HOME && \
+    ln -s $SONAR_SCANNER_HOME/bin/sonar-scanner /usr/bin/sonar-scanner && \
+    rm sonar-scanner-cli-${SONAR_SCANNER_VERSION}-linux.zip
+
+ENV PATH="${SONAR_SCANNER_HOME}/bin:${PATH}"
+
+
+RUN apt update && apt install -y lsb-release ca-certificates curl && \
+    install -m 0755 -d /etc/apt/keyrings && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc && \
+    chmod a+r /etc/apt/keyrings/docker.asc && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \
+    https://download.docker.com/linux/debian $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" \
+    | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    apt-get update && apt-get install -y docker-ce-cli && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN groupdel systemd-journal || true \
+    && groupadd -g 999 docker \
+    && usermod -aG docker jenkins
+
+
+USER jenkins
+
