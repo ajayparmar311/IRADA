@@ -4,7 +4,7 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = 'parmarajay/irada:2.0'
+        IMAGE_NAME = 'parmarajay/irada:4.0'
         CONTAINER_NAME = 'irada-test'
         NETWORK_NAME = 'jenkins'
         SONAR_TOKEN = credentials('irada-sonar-key')
@@ -115,7 +115,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        docker run -d --name $CONTAINER_NAME -p 8046:3000 --network $NETWORK_NAME $IMAGE_NAME
+                        docker run -d --name $CONTAINER_NAME -p 8046:80 --network $NETWORK_NAME $IMAGE_NAME
                     """
                 }
             }
