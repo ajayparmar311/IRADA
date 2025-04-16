@@ -4,7 +4,7 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = 'parmarajay/irada:1.0'
+        IMAGE_NAME = 'parmarajay/irada:2.0'
         CONTAINER_NAME = 'irada-test'
         NETWORK_NAME = 'jenkins'
         SONAR_TOKEN = credentials('irada-sonar-key')
@@ -74,6 +74,7 @@ pipeline {
     steps {
         sshagent(['ansible-ssh-key']) {
             sh '''
+                ssh -o StrictHostKeyChecking=no admin@ansible-controller -C \"sudo rm -rf  /home/admin/irada"
                 ssh -o StrictHostKeyChecking=no admin@ansible-controller -C \"mkdir -p /home/admin/irada"
                 scp -o StrictHostKeyChecking=no Dockerfile create-container-image-ansible-playbook.yaml admin@ansible-controller:/home/admin/irada
                 ssh -o StrictHostKeyChecking=no admin@ansible-controller -C \"chmod -R  770 /home/admin/irada"
@@ -90,6 +91,35 @@ pipeline {
         }
     }
 }
+
+    stage('Pull Image') {
+            steps {
+                script {
+                    sh "docker pull $IMAGE_NAME"
+                }
+            }
+        }
+
+    stage('Stop & Remove Existing Container') {
+            steps {
+                script {
+                    sh """
+                        docker stop $CONTAINER_NAME || true
+                        docker rm $CONTAINER_NAME || true
+                    """
+                }
+            }
+        }
+        
+    stage('Run Container') {
+            steps {
+                script {
+                    sh """
+                        docker run -d --name $CONTAINER_NAME -p 8046:3000 --network $NETWORK_NAME $IMAGE_NAME
+                    """
+                }
+            }
+        }
 
     }
 }
