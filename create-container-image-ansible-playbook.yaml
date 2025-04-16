@@ -27,7 +27,7 @@
           path: /home/admin/irada
           pull: no
           args:
-            listen_port: 80
+            listen_port: 3000
         source: build
 
     - name: Log into DockerHub
@@ -38,6 +38,6 @@
     - name: Push to docker hub
       docker_image:
         name: irada
-        repository: parmarajay/irada:2.0
+        repository: parmarajay/irada:3.0
         push: yes
         source: local
