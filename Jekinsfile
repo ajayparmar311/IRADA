@@ -70,5 +70,16 @@ pipeline {
 		}
 	}
 
+    stage('Copy Files to Ansible Server') {
+    steps {
+        sshagent(['ansible-ssh-key']) {
+            sh '''
+                ssh -o StrictHostKeyChecking=no admin@ansible-controller -C \"sudo mkdir -p /home/admin/irada
+                scp -o StrictHostKeyChecking=no Dockerfile create-container-image-ansible-playbook.yaml admin@ansible-controller:/home/admin/irada
+            '''
+        }
+    }
+}
+
     }
 }

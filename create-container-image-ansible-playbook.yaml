@@ -7,7 +7,7 @@
       become: true
       get_url:
         url: http://nexus:8081/repository/react-artifacts/build-artifact.tar.gz
-        dest: /home/admin
+        dest: /home/admin/irada
         url_username: admin
         url_password: admin
 
@@ -23,7 +23,7 @@
       docker_image:
         name: irada
         build:
-          path: /home/admin
+          path: /home/admin/irada
           pull: no
           args:
             listen_port: 80
@@ -36,7 +36,7 @@
 
     - name: Push to docker hub
       docker_image:
-        name: iwayq
+        name: irada
         repository: parmarajay/irada:2.0
         push: yes
         source: local
