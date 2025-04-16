@@ -12,7 +12,8 @@
         url_password: admin
 
     - name: unzip tar file
-      command: mkdir build && tar -xzf build-artifact.tar.gz -C build
+      shell: |
+        mkdir -p build && tar -xzf build-artifact.tar.gz -C build
 
     - name: Pull nginx  Container Image
       docker_image:

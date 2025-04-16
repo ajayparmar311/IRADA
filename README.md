@@ -60,13 +60,8 @@ command used to create the workflow
 ```bash
 docker build -t jenkins-agent-node-sonar -f Dockerfile.agent .
 
-docker run -d \
-  --name node-sonar-agent \
-  --network jenkins \
-  -e JENKINS_URL=http://jenkins-blueocean:8080 \
-  -e JENKINS_AGENT_NAME=node-sonar-agent \
-  -e JENKINS_SECRET=f5d0186722523a887d682de007dab7f7ffc354f3a3dab5c1f309988eb62d0935 \
-  jenkins-agent-node-sonar
+docker run -d   --name node-sonar-agent   --network jenkins_jenkins   -e JENKINS_URL=http://jenkins-blueocean:8080   -e JENKINS_AGENT_NAME=node-sonar-agent   -e JENKINS_SECRET=f5d0186722523a887d682de007dab7f7ffc354f3a3dab5c1f309988eb62d0935 -v /var/run/docker.sock:/var/run/docker.sock   jenkins-agent-node-sonar:v1
+
 
 
 echo 1 | sudo tee /proc/sys/vm/drop_caches

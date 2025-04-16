@@ -74,8 +74,18 @@ pipeline {
     steps {
         sshagent(['ansible-ssh-key']) {
             sh '''
-                ssh -o StrictHostKeyChecking=no admin@ansible-controller -C \"sudo mkdir -p /home/admin/irada
+                ssh -o StrictHostKeyChecking=no admin@ansible-controller -C \"mkdir -p /home/admin/irada"
                 scp -o StrictHostKeyChecking=no Dockerfile create-container-image-ansible-playbook.yaml admin@ansible-controller:/home/admin/irada
+                ssh -o StrictHostKeyChecking=no admin@ansible-controller -C \"chmod -R  770 /home/admin/irada"
+            '''
+        }
+    }
+} 
+    stage('Build Container Image') {
+    steps {
+        sshagent(['ansible-ssh-key']) {
+            sh '''
+				ssh -o StrictHostKeyChecking=no admin@ansible-controller -C \"sudo ansible-playbook irada/create-container-image-ansible-playbook.yaml"
             '''
         }
     }
