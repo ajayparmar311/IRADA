@@ -1,0 +1,42 @@
+#Create Custom Container Image
+#Push to DockerHub Registry
+---
+- hosts: localhost
+  tasks:
+    - name: Pull ./build artifact from Artifactory
+      become: true
+      get_url:
+        url: http://nexus:8081/repository/react-artifacts/build-artifact.tar.gz
+        dest: /home/admin
+        url_username: admin
+        url_password: admin
+
+    - name: unzip tar file
+      command: mkdir build && tar -xzf build-artifact.tar.gz -C build
+
+    - name: Pull nginx  Container Image
+      docker_image:
+        name: nginx:stable-alpine
+        source: pull
+
+    - name: Build image and with build args
+      docker_image:
+        name: irada
+        build:
+          path: /home/admin
+          pull: no
+          args:
+            listen_port: 80
+        source: build
+
+    - name: Log into DockerHub
+      docker_login:
+        username: parmarajay
+        password: JanNew@2023
+
+    - name: Push to docker hub
+      docker_image:
+        name: iwayq
+        repository: parmarajay/irada:2.0
+        push: yes
+        source: local

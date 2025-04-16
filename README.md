@@ -20,9 +20,11 @@ This project is a web application for The IRADA NGO. It's built using **ReactJS*
 ## Getting Started
 
 Clone the repository:
+
 ```bash
 git clone https://github.com/bhaveshpatil07/The-IRADA-NGO-ReactJs
 ```
+
 ##### Move to the desired folder:
 
 ```bash
@@ -30,26 +32,30 @@ cd IRADA
 ```
 
 ##### Install the dependencies:
+
 ```
  npm install
 ```
+
 ##### Now we're almost done run the following command to start your web app:
+
 ```
  npm run start
 ```
 
 ##### Your site is live at
+
 ```bash
 http://localhost:3000
 ```
+
 ---
 
 ### If you encounter any difficulty running it, feel free to contact on my email :smile:
 
 ### If you liked my work do give us a star :star::star::star: It Encourages us to do more :wink: :dizzy:
 
-command used to create the workflow 
-
+command used to create the workflow
 
 ```bash
 docker build -t jenkins-agent-node-sonar -f Dockerfile.agent .
@@ -65,6 +71,8 @@ docker run -d \
 
 echo 1 | sudo tee /proc/sys/vm/drop_caches
 
+ssh-keygen -t rsa -b 4096 -C "ajayp.parmar311@gmail.com"
 
+ssh-copy-id admin@ansible-controller
 
 ```

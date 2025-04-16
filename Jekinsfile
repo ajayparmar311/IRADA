@@ -1,0 +1,74 @@
+pipeline {
+    agent {
+        label 'nodejs'
+    }
+
+    environment {
+        IMAGE_NAME = 'parmarajay/irada:1.0'
+        CONTAINER_NAME = 'irada-test'
+        NETWORK_NAME = 'jenkins'
+        SONAR_TOKEN = credentials('irada-sonar-key')
+        NEXUS_URL = 'http://nexus:8081/repository/react-artifacts/'
+        BUILD_ARTIFACT = 'build-artifact.tar.gz'
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                sshagent(['git-ssh-jenkins-agent-key']) {
+                    checkout([$class: 'GitSCM',
+                        branches: [[name: '*/master']],
+                        userRemoteConfigs: [[
+                            url: 'git@github.com:ajayparmar311/IRADA.git'
+                        ]]
+                    ])
+                }
+            }
+        }
+
+        stage('Install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('SonarQube  Analyze') {
+            steps {
+                sh '''
+                    sonar-scanner \
+                      -Dsonar.projectKey=irada \
+                      -Dsonar.sources=src \
+                      -Dsonar.host.url=http://sonarqube:9000 \
+                      -Dsonar.login=${SONAR_TOKEN} \
+                '''
+            }
+        }
+
+    stage('Install & Build') {
+      steps {
+        sh 'npm install'
+        sh 'CI=false npm run build'
+      }
+    }
+
+    stage('Package Build') {
+      steps {
+        sh '''
+         tar -czf $BUILD_ARTIFACT -C build .
+       '''
+      }
+    }
+
+    stage('Upload to Nexus') {
+		steps {
+        withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
+            sh '''
+            curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file $BUILD_ARTIFACT $NEXUS_URL$BUILD_ARTIFACT
+          '''
+			}
+		}
+	}
+
+    }
+}
