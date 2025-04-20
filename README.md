@@ -73,4 +73,7 @@ ssh-copy-id admin@ansible-controller
 wget --user=admin --password=admin  "http://localhost:8081/repository/react-artifacts/build-artifact.tar.gz"
 
 mkdir build && tar -xzf build-artifact.tar.gz -C build
+
+ssh -R 80:localhost:8046 serveo.net
+
 ```

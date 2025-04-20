@@ -14,14 +14,15 @@ export default function Landing() {
         <div className="titles">
           <div className="caption2">
             <p>
-              At <span>IRADA,</span> we work towards the betterment of our{' '}
-              <span>world</span>{' '}
+              At <span>IRADA,</span> we work towards for betterment of our{' '}
+              <span>Rural india</span>{' '}
             </p>
           </div>
           <div className="caption3">
             <p>
-              Bring out the change in society by spreading hands to help the
-              unprivileged children and other backward communities.
+              Bring out the change in society by spreading hands to help to
+              clean our villages , empower rural india, empower unprivileged
+              children and other backward communities.
             </p>
           </div>
           <div className="btns">
