@@ -52,8 +52,8 @@ export default function Navbar() {
                 </div>
                 <div className="text">
                   <i className="fa fa-phone"></i>
-                  <a href="tel:+91-7385223242">
-                    <p>+91-7385223242</p>
+                  <a href="tel:+91-8305459589">
+                    <p>+91-8305459589</p>
                   </a>
                 </div>
                 <div className="text">
@@ -67,19 +67,39 @@ export default function Navbar() {
             <div className="col-md-4">
               <div className="top-bar-right">
                 <div className="social">
-                  <a href="https://twitter.com/vit_socials">
+                  <a
+                    href="https://twitter.com/vit_socials"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     <i className="fab fa-x-twitter"></i>
                   </a>
-                  <a href="https://www.facebook.com/vitsocials">
+                  <a
+                    href="https://www.facebook.com/vitsocials"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     <i className="fab fa-facebook-f"></i>
                   </a>
-                  <a href="https://www.instagram.com/vitsocials/">
+                  <a
+                    href="https://www.instagram.com/vitsocials/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     <i className="fab fa-instagram"></i>
                   </a>
-                  <a href="https://www.youtube.com/channel/UCJnaNm8Ns08rUIhsdFM2fhA">
+                  <a
+                    href="https://www.youtube.com/channel/UCJnaNm8Ns08rUIhsdFM2fhA"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     <i className="fab fa-youtube"></i>
                   </a>
-                  <a href="https://www.linkedin.com/company/vit-social-welfare-development/">
+                  <a
+                    href="https://www.linkedin.com/feed/?trk=hb_signin"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     <i className="fab fa-linkedin-in"></i>
                   </a>
                 </div>
