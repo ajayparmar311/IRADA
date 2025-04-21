@@ -77,3 +77,5 @@ mkdir build && tar -xzf build-artifact.tar.gz -C build
 ssh -R 80:localhost:8046 serveo.net
 
 ```
+
+jio fiber home gateway : https://192.168.31.1/
