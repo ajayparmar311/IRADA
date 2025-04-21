@@ -14,12 +14,13 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 <p>
-                  <i className="fa fa-map-marker-alt"></i>VIT, Pune, India
+                  <i className="fa fa-map-marker-alt"></i>IRADA Trust, Sailana
+                  Dist. ratlam
                 </p>
               </a>
-              <a href="tel:+91-7385223242">
+              <a href="tel:+91-8305459589">
                 <p>
-                  <i className="fa fa-phone"></i>+91-7385223242
+                  <i className="fa fa-phone"></i>+91-8305459589
                 </p>
               </a>
               <a href="mailto:iradatrust2025@gmail.com">
@@ -32,30 +33,40 @@ export default function Footer() {
                 <a
                   className="btn btn-custom"
                   href="https://twitter.com/vit_socials"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <i className="fab fa-x-twitter"></i>
                 </a>
                 <a
                   className="btn btn-custom"
                   href="https://www.facebook.com/vitsocials"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <i className="fab fa-facebook-f"></i>
                 </a>
                 <a
                   className="btn btn-custom"
                   href="https://www.instagram.com/vitsocials/"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <i className="fab fa-instagram"></i>
                 </a>
                 <a
                   className="btn btn-custom"
                   href="https://www.youtube.com/channel/UCJnaNm8Ns08rUIhsdFM2fhA"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <i className="fab fa-youtube"></i>
                 </a>
                 <a
                   className="btn btn-custom"
                   href="https://www.linkedin.com/company/vit-social-welfare-development/"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <i className="fab fa-linkedin-in"></i>
                 </a>
@@ -104,14 +115,14 @@ export default function Footer() {
         <div className="row">
           <div className="col-md-6">
             <p>
-              &copy; <a href="#">THE IRADA NGO</a> | 2024, All Right Reserved.
+              &copy; <a href="#">THE IRADA NGO</a> | 2025, All Right Reserved.
             </p>
           </div>
           <div className="col-md-6">
             <p>
               Designed By{' '}
-              <a href="https://www.linkedin.com/in/bhavesh-patil-92b7aa22a">
-                TY_CS_C_52, VIT, Pune
+              <a href="https://www.linkedin.com/feed/?trk=hb_signin">
+                IRADA Trust, Ratlam
               </a>
             </p>
           </div>
