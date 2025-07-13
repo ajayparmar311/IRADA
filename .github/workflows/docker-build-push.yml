@@ -2,7 +2,7 @@ name: Build and Push React Docker Image
 
 on:
   push:
-    branches: [master] # Or your deployment branch
+    branches: [master]  # Or your deployment branch
 
 jobs:
   build-and-push:
@@ -11,6 +11,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Generate random Docker tag
+        id: tag
+        run: |
+          DATE=$(date +%Y%m%d%H%M%S)
+          SHA=$(git rev-parse --short HEAD)
+          echo "TAG=${DATE}-${SHA}" >> $GITHUB_OUTPUT
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -24,7 +31,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./irada_frontend  # Path to your frontend folder
+          file: ./irada_frontend/Dockerfile  # Path to Dockerfile
           push: true
-          tags: parmarajay/irada:5.0
+          tags: |
+            parmarajay/irada:${{ steps.tag.outputs.TAG }}
